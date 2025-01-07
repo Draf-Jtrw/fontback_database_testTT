@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ค้นหาเจ้าของ</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <h1>ค้นหาเจ้าของ</h1>
+    <table>
+        <tr>
+            <th>Operation</th>
+            <th>HN เจ้าของ</th>
+            <th>ชื่อเจ้าของ</th>
+            <th>เบอร์ติดต่อ</th>
+            <th>อีเมลล์</th>
+        </tr>
+        <% users.forEach(user=> { %>
+            <tr>
+                <td class="icons"><a href="/users/<%= user.id %>">🔍</a></td>
+                <td>
+                    <%= user.hn %>
+                </td>
+                <td>
+                    <%= user.name %>
+                </td>
+                <td>
+                    <%= user.phone_number %>
+                </td>
+                <td>
+                    <%= user.email %>
+                </td>
+            </tr>
+            <% }); %>
+    </table>
+</body>
+
+</html>
