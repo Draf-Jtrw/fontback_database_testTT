@@ -16,16 +16,18 @@
                 <label class="green-box">HN: <input type="text" name="hn" value="<%= user.hn %>" required></label>
                 <script>
                     function splitName() {
-                        const fullname = '<%= user.name %>'
-                        const nameParts = fullname.split(' ')
+                        const fullname = '<%= user.name %>' // ชื่อเต็ม
+                        const nameParts = fullname.split(' ')   // แยกชื่อตามช่องว่างและเก็บในอาร์เรย์
                         if (nameParts.length >= 2) {
-                            const firstname = nameParts[0]
-                            const lastname = nameParts.slice(1).join(' ')
+                            // ตัวอย่างการตัดชื่อที่เก็บในอาร์เรย์ "จาวา เจเอส"
+                            const firstname = nameParts[0]  // คำแรกใน index 0 "จาวา"
+                            const lastname = nameParts[1]   // คำต่อจากนั้น index 1 "เจเอส"
 
-                            document.getElementById('firstname').value = firstname
-                            document.getElementById('lastname').value = lastname
+                            document.getElementById('firstname').value = firstname  // ใส่ค่าตัวแปรลงใน input ที่มี id firstname
+                            document.getElementById('lastname').value = lastname    // ใส่ค่าตัวแปรลงใน input ที่มี id lastname
                         }
                     }
+                    // ฟังก์ชัน spliName จะถูกเรียกใช้เมื่อหน้าเว็บโหลดเสร็จสมบูรณ์
                     document.addEventListener('DOMContentLoaded', splitName)
 
                     // ฟังก์ชันตรวจสอบฟอร์ม
@@ -35,14 +37,17 @@
                         let errorMessage = ''
 
                         // ตรวจสอบชื่อ
+                        // กำหนดตัวแปรมาเก็บชื่อและนามสกุล
                         const firstname = document.getElementById('firstname').value
                         const lastname = document.getElementById('lastname').value
+                        // ตรวจสอบ input ว่ามีค่าว่างหรือไม่ ถ้ามีให้โชว์ errorMessage
                         if (firstname.trim() === '' || lastname.trim() === '') {
                             errorMessage += 'กรุณากรอกชื่อและนามสกุลให้ครบ. \n'
                             isValid = false
                         }
 
                         // ตรวจสอบเบอร์ติดต่อ
+                        // กำหนดตัวแปรมาเก็บเบอร์โทร โดยดูว่า input ที่มี name = "phone_number" มีค่าว่างหรือป่าว
                         const phone = document.querySelector('input[name="phone_number"]').value
                         if (phone.trim() === '') {
                             errorMessage += 'กรุณากรอกเบอร์ติดต่อ. \n'
@@ -50,6 +55,7 @@
                         }
 
                         // ตรวจสอบอีเมล
+                        // กำหนดตัวแปรมาเก็บอีเมล โดยดูว่า input ที่มี name = "email" เป็นค่าว่างหรือป่าว
                         const email = document.querySelector('input[name="email"]').value
                         if (email.trim() === '') {
                             errorMessage += 'กรุณากรอกอีเมล. \n'
@@ -57,9 +63,11 @@
                         }
 
                         // ถ้ามี error ให้แสดงข้อความ
+                        // ถ้า isValid เป็น false ให้โชว์ errorMessage
                         if (!isValid) {
                             alert(errorMessage)
                         }
+                        // คืนค่า isValid บอกว่าฟอร์มผ่านการตรวจสอบ
                         return isValid
                     }
                 </script>
